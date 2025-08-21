@@ -1,0 +1,4 @@
+/* Small polish for cards and focus rings */
+:root { --ring: 0 0 0 3px rgba(26,115,232,0.25); }
+a, button { outline: none; }
+a:focus-visible, button:focus-visible { box-shadow: var(--ring); border-radius: 12px; }
