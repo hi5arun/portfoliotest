@@ -1,0 +1,76 @@
+/* ====== Custom CSS (light/dark, subtle UI polish) ====== */
+:root { --card-bg: #ffffff; --card-border: rgba(226,232,240,0.7); }
+@media (prefers-color-scheme: dark) {
+  :root { --card-bg: rgba(2,6,23,0.6); --card-border: rgba(30,41,59,0.7); }
+}
+html { scroll-behavior: smooth; }
+
+.section-title{
+  @apply text-3xl font-extrabold text-center;
+}
+.section-title:after{
+  content:''; display:block; height:3px; width:80px; margin:10px auto 0;
+  background-image: linear-gradient(90deg, #0ea5e9, #8b5cf6);
+  border-radius:999px;
+}
+.stat-card{
+  @apply bg-white/70 dark:bg-slate-900/40 rounded-xl p-3 shadow ring-1;
+  border-color: var(--card-border);
+}
+.stat-number{ @apply text-xl font-extrabold; }
+.stat-label{ @apply text-xs text-slate-500; }
+
+.skill-card{
+  @apply bg-white/70 dark:bg-slate-900/40 rounded-xl p-4 shadow ring-1 flex items-center gap-3;
+  border-color: var(--card-border);
+}
+.skill-card i{ @apply text-brand-primary; }
+
+.project-card{
+  @apply bg-white/80 dark:bg-slate-900/40 rounded-2xl p-6 shadow ring-1 hover:-translate-y-1 transition-transform;
+  border-color: var(--card-border);
+}
+.project-icon{ @apply w-12 h-12 grid place-items-center rounded-xl bg-gradient-to-tr from-brand-primary/10 to-brand-secondary/10 text-brand-primary text-xl; }
+.tags{ @apply flex flex-wrap gap-2 mt-3; }
+.tags span{ @apply text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800; }
+
+.timeline-item{ @apply relative pl-4 pb-8; }
+.timeline-item:before{
+  content:''; position:absolute; left:-10px; top:8px; width:10px; height:10px; border-radius:999px;
+  background: linear-gradient(90deg, #0ea5e9, #8b5cf6);
+  box-shadow: 0 0 0 3px rgba(14,165,233,0.2);
+}
+.timeline-item h3{ @apply font-semibold text-lg; }
+.timeline-item .time{ @apply text-xs text-slate-500 mt-1; }
+.list{ @apply mt-3 space-y-2 list-disc pl-5; }
+
+.card{
+  @apply bg-[var(--card-bg)] rounded-2xl p-6 shadow ring-1;
+  border-color: var(--card-border);
+}
+.card-title{ @apply font-semibold text-lg flex items-center gap-2; }
+.card-icon{
+  @apply w-12 h-12 grid place-items-center rounded-xl bg-gradient-to-tr from-brand-primary/10 to-brand-secondary/10 text-brand-primary text-xl mb-3;
+}
+.link{ @apply text-brand-primary hover:underline; }
+.input{
+  @apply w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/40 px-3 py-2 outline-none;
+}
+.btn-primary{
+  @apply inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-4 py-2;
+}
+
+.badge{
+  @apply inline-flex items-center gap-2 text-xs px-3 py-2 rounded-full ring-1;
+  border-color: var(--card-border);
+}
+
+/* Carousel */
+.testimonial-img{ width: 100%; height: auto; display: inline-block; max-height: 560px; object-fit: contain; }
+.carousel-btn{
+  @apply absolute top-1/2 -translate-y-1/2 bg-white/80 dark:bg-slate-900/70 text-slate-800 dark:text-slate-100 w-9 h-9 rounded-full grid place-items-center shadow-lg;
+}
+
+/* Floating Jarvis helpers */
+#jarvis-toggle img{ transition: transform .2s; }
+#jarvis-toggle img:hover{ transform: scale(1.05); }
