@@ -430,74 +430,49 @@
 
 <!-- ==================== JARVIS CHATBOT (Floating) ==================== -->
 <div id="jarvis-toggle" style="position:fixed;bottom:20px;right:20px;cursor:pointer;z-index:9999;">
-  <img src="img/Jarvis256.jpg" alt="Jarvis" style="width:64px;height:64px;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
-</div>
-<div id="jarvis-popup" style="display:none;position:fixed;bottom:90px;right:20px;width:400px;height:600px;max-width:92vw;max-height:80vh;background:white;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.3);overflow:hidden;z-index:9998;">
-  <div id="jarvis-close" style="position:absolute;top:5px;right:10px;font-size:20px;font-weight:bold;color:#555;cursor:pointer;">&times;</div>
-  <iframe src="https://hi5arun4ai-portfoliochatbot.hf.space" width="100%" height="100%" frameborder="0" style="border:none;"></iframe>
+  <img src="img/Jarvis256.jpg" alt="Jarvis"
+       style="width:64px;height:64px;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
 </div>
 
-<!-- ==================== SCRIPTS ==================== -->
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<div id="jarvis-popup"
+     style="display:none;position:fixed;bottom:90px;right:20px;
+            width:400px;height:600px;max-width:92vw;max-height:80vh;
+            background:white;border-radius:12px;
+            box-shadow:0 6px 18px rgba(0,0,0,0.3);
+            overflow:hidden;z-index:9998;flex-direction:column;">
+  <div id="jarvis-close"
+       style="position:absolute;top:5px;right:10px;font-size:20px;
+              font-weight:bold;color:#555;cursor:pointer;">&times;</div>
+
+  <iframe src="https://hi5arun4ai-portfoliochatbottest.hf.space"
+          style="border:none;width:100%;height:100%;"></iframe>
+</div>
+
 <script>
-  // AOS
-  AOS.init({ once:true });
-
-  // Mobile menu
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  if (menuBtn) menuBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
-
-  // Smooth active link highlight on scroll
-  const sections = ['home','about','skills','experience','projects','testimonials','certifications','education','contact'];
-  const links = Array.from(document.querySelectorAll('.nav-link'));
-  const map = Object.fromEntries(links.map(l => [l.getAttribute('href').replace('#',''), l]));
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        links.forEach(a=>a.classList.remove('active'));
-        const id = e.target.id;
-        if(map[id]) map[id].classList.add('active');
-      }
-    })
-  }, { rootMargin: '-40% 0px -60% 0px', threshold: 0.01 });
-  sections.forEach(id => { const el = document.getElementById(id); if(el) obs.observe(el); });
-
-  // Stat counters
-  const counters = document.querySelectorAll('.stat-number');
-  const counterObs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        const el = e.target;
-        const end = parseInt(el.dataset.count,10);
-        const plus = (end === 18) ? '+' : '%'; // formatting per tile
-        let cur = 0;
-        const step = Math.max(1, Math.round(end/40));
-        const iv = setInterval(()=>{
-          cur += step;
-          if(cur >= end) { cur = end; clearInterval(iv); }
-          el.textContent = cur + (end===18?'+':'%');
-        }, 20);
-        counterObs.unobserve(el);
-      }
-    });
-  }, { threshold: 0.4 });
-  counters.forEach(c=>counterObs.observe(c));
-
   // Jarvis open/close
-  document.getElementById("jarvis-toggle").onclick=()=>{document.getElementById("jarvis-popup").style.display="block"};
-  document.getElementById("jarvis-close").onclick=()=>{document.getElementById("jarvis-popup").style.display="none"};
+  const toggle = document.getElementById("jarvis-toggle");
+  const popup = document.getElementById("jarvis-popup");
+  const close = document.getElementById("jarvis-close");
 
-  // Testimonials: always 1 per view
-  new Swiper('.swiper', {
-    loop: true,
-    spaceBetween: 20,
-    slidesPerView: 1,
-    pagination: { el: '.swiper-pagination', clickable: true },
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
+  toggle.addEventListener("click", () => {
+    popup.style.display = "flex";   // use flex so iframe fills space
+  });
+  close.addEventListener("click", () => {
+    popup.style.display = "none";
   });
 </script>
+
+<style>
+/* Responsive fix for smaller screens */
+@media (max-width: 768px) {
+  #jarvis-popup {
+    width: 90%;
+    height: 70%;
+    right: 5%;
+    bottom: 80px;
+  }
+}
+</style>
 
 </body>
 </html>
