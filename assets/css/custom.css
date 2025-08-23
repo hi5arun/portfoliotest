@@ -2,3 +2,17 @@
 :root { --ring: 0 0 0 3px rgba(26,115,232,0.25); }
 a, button { outline: none; }
 a:focus-visible, button:focus-visible { box-shadow: var(--ring); border-radius: 12px; }
+
+/* Fix timeline alignment */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 0.5rem !important;  /* bring line closer */
+  }
+  .timeline-dot {
+    left: 0 !important;
+    margin-left: -8px; /* align dot */
+  }
+  .timeline-content {
+    margin-left: 1.5rem; /* proper spacing for text */
+  }
+}
