@@ -74,3 +74,18 @@ html { scroll-behavior: smooth; }
 /* Floating Jarvis helpers */
 #jarvis-toggle img{ transition: transform .2s; }
 #jarvis-toggle img:hover{ transform: scale(1.05); }
+
+/* Fix timeline alignment */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 0.5rem !important;  /* bring line closer */
+  }
+  .timeline-dot {
+    left: 0 !important;
+    margin-left: -8px; /* align dot */
+  }
+  .timeline-content {
+    margin-left: 1.5rem; /* proper spacing for text */
+  }
+}
+
