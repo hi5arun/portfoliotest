@@ -1,0 +1,113 @@
+/* ===== Global Styles ===== */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* ===== Hero Buttons ===== */
+.btn-primary {
+  background: #1A73E8;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+.btn-primary:hover {
+  background: #155ab6;
+}
+
+/* ===== Tooltip ===== */
+.tooltip { position: relative; display: inline-block; }
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 140px;
+  background: #1A73E8;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 8px;
+  position: absolute;
+  z-index: 1000;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  font-size: 0.75rem;
+}
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ===== Timeline Fix ===== */
+.tl { position: relative; }
+.tl:before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(26,115,232,0.25);
+}
+.dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1A73E8;
+  left: 7px;
+}
+.tl-entry { padding-left: 2.25rem; }
+@media (min-width: 768px) {
+  .tl:before { left: 50%; transform: translateX(-1px); }
+  .dot { left: calc(50% - 6px); }
+  .tl-entry { padding-left: 0; }
+}
+
+/* ===== Jarvis Popup ===== */
+#jarvis-popup {
+  display: none;
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 400px;
+  height: 600px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 6px 18px rgba(0,0,0,0.3);
+  overflow: hidden;
+  z-index: 9998;
+  display: flex;
+  flex-direction: column; /* keeps input at bottom */
+}
+
+#jarvis-popup iframe {
+  flex: 1; /* iframe takes remaining space */
+  border: none;
+}
+
+#jarvis-close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+}
+#jarvis-close:hover { color: red; }
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+  #jarvis-popup {
+    width: 90%;
+    height: 70%;
+    right: 5%;
+    bottom: 80px;
+  }
+}
+
