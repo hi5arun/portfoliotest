@@ -1,25 +1,29 @@
-// ===== Jarvis Popup =====
+// Footer year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Testimonials slider
+let slider = document.getElementById("testimonial-slider");
+let index = 0;
+setInterval(() => {
+  index = (index + 1) % 4;
+  slider.style.transform = `translateX(-${index * 100}%)`;
+}, 4000);
+
+// Jarvis popup
 const toggleBtn = document.getElementById("jarvis-toggle");
-const popup = document.getElementById("jarvis-popup");
+const popupWin = document.getElementById("jarvis-popup");
 const closeBtn = document.getElementById("jarvis-close");
 
-if (toggleBtn) {
-  toggleBtn.addEventListener("click", () => {
-    popup.style.display = (popup.style.display === "none" || popup.style.display === "") ? "block" : "none";
-  });
-}
+toggleBtn.addEventListener("click", () => {
+  popupWin.style.display = (popupWin.style.display === "block") ? "none" : "block";
+});
+closeBtn.addEventListener("click", () => popupWin.style.display = "none");
 
-if (closeBtn) {
-  closeBtn.addEventListener("click", () => {
-    popup.style.display = "none";
-  });
-}
-
-// ===== Tooltip on Mobile (tap support) =====
-document.querySelectorAll('.tooltip').forEach(el => {
-  el.addEventListener('click', function () {
-    let tip = this.querySelector('.tooltip-text');
-    tip.style.visibility = tip.style.visibility === 'visible' ? 'hidden' : 'visible';
-    tip.style.opacity = tip.style.opacity === '1' ? '0' : '1';
+// Case study expand/collapse
+document.querySelectorAll(".read-more").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const content = btn.nextElementSibling;
+    content.classList.toggle("hidden");
+    btn.textContent = content.classList.contains("hidden") ? "Read More ▼" : "Read Less ▲";
   });
 });
